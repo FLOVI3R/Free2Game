@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>REGISTER</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="formRegister">
+    <ion-item>
+      <ion-label position="floating">NOMBRE</ion-label>
+      <ion-input formControlName="firstname" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">APELLIDOS</ion-label>
+      <ion-input formControlName="secondname" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">EMAIL</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CONTRASEÑA</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CONFIRMAR CONTRASEÑA</ion-label>
+      <ion-input formControlName="c_password" type="password"></ion-input>
+    </ion-item>
+    <ion-button (click)="register()">Registrarse en Free2Game</ion-button>
+  </form>
+</ion-content>
+<ion-footer collapse="fade">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button [routerLink]="['/login']">Iniciar Sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
