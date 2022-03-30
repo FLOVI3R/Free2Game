@@ -30,24 +30,30 @@ export class LoginPage implements OnInit {
     if(this.formLogin.invalid){
       const alert = await this.alertController.create({
         header: 'Datos incompletos',
-        message: 'Tienes que llenar todos los campos.',
+        message: 'Tiene que introducir todos los datos para iniciar sesión.',
         buttons: ['Aceptar'],
       });
       await alert.present();
       return;
     }
-    this.apiProvider.login(this.formLogin.value.email, this.formLogin.value.password)
-    .then(data => {
+    this.apiProvider.login(this.formLogin.value.email, this.formLogin.value.password).then(async data => {
       this.data = data;
       this.data = this.data.data;
-      this.navCtrl.navigateRoot('tab1');
-      //this.apiProvider.obtenerUsuario(this.data.id);
-      //  if(this.data.type=='a'){
-      //    this.route.navigate(['/administration'])
-      //  }else{
-      //    this.route.navigate(['/user'])
-      //  }
-
+      if(this.data.actived == '1'){
+          if(this.data.type=='a'){
+            this.navCtrl.navigateRoot('admin');
+          }else{
+            this.navCtrl.navigateRoot('tab1');
+          }
+      }else {
+        const alert = await this.alertController.create({
+          header: 'Cuenta desactivada',
+          message: 'Para acceder primero tiene que verificar su email, tras esto un administrador activará su cuenta y podrá iniciar sesión.',
+          buttons: ['Aceptar'],
+        });
+        await alert.present();
+        return;
+      }
     })
   }
 }

@@ -36,16 +36,9 @@ export class RegisterPage implements OnInit {
       });
       await alert.present();
       return;
+    }else {
+      this.apiProvider.register(fR.firstname, fR.secondname, fR.email, fR.password, fR.c_password);
+      this.navCtrl.navigateRoot('login');
     }
-    var user = {
-      firstname: fR.firstname,
-      secondname: fR.secondname,
-      email: fR.email,
-      password: fR.password,
-      c_password: fR.c_password
-    }
-    console.log(user);
-    this.apiProvider.register(user.firstname, user.secondname, user.email, user.password, user.c_password);
-    this.navCtrl.navigateRoot('login');
   }
 }
